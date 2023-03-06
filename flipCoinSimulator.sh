@@ -2,27 +2,33 @@ echo "Welcome to Flipping a coin..."
 
 heads=0
 tails=0
+ties=0
 
 
-read -p "How many times do you want to flip the coin? " numflips
-
-
-for (( i=1; i<=numflips; i++ ))
-do
-    
+while [ $heads -lt 21 ] && [ $tails -lt 21 ]
+do    
     result=$((RANDOM%2))
 
     
     if [ $result -eq 0 ]
     then
-        echo "Flip $i: Heads"
+        echo "Heads"
         ((heads++))
     else
-        echo "Flip $i: Tails"
+        echo "Tails"
         ((tails++))
     fi
 done
 
+if [[ $heads -eq $tails ]]
+then
+echo "It is tie!"
+else
+if [[ $heads -gt $tails ]]
+then
+echo "Heads win! They won $heads time."
+else
+echo "Tails win! They won $tails time."
+fi
+fi
 
-echo "Heads won $heads times."
-echo "Tails won $tails times."
