@@ -3,7 +3,7 @@ echo "Welcome to Flipping a coin..."
 heads=0
 tails=0
 ties=0
-
+difference=2
 
 while [ $heads -lt 21 ] && [ $tails -lt 21 ]
 do    
@@ -18,17 +18,18 @@ do
         echo "Tails"
         ((tails++))
     fi
-done
 
 if [[ $heads -eq $tails ]]
 then
 echo "It is tie!"
-else
-if [[ $heads -gt $tails ]]
+elif [ $heads -gt $tails ] && [ $((heads-tails)) -ge $difference ]
 then
-echo "Heads win! They won $heads time."
-else
-echo "Tails win! They won $tails time."
-fi
+echo "Heads Won! by $heads"
+break
+elif [ $tails -gt $heads ] && [ $((tails-heads)) -ge $difference ]
+then
+echo "Tails Won! by $tails"
+break
 fi
 
+done
